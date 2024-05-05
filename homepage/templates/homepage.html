@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Homepage</h1>
+    <!-- Check if user is not None -->
+    {% if user %}
+        <a href="/logout/" class="btn"><button>Logout</button></a>
+        <a href="/profile/" class="btn"><button>Profile</button></a><br>
+        <span><h1>Welcome {{user.username}}</h1></span>
+    {% else %}
+        <a href="/login/" class="btn"><button>Login</button></a>
+        <a href="/register/" class="btn"><button>Register</button></a><br>
+        <span><h1>Welcome Guest</h1></span>
+    {% endif %}
 </body>
 </html>

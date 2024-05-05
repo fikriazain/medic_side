@@ -19,6 +19,7 @@ def index(request):
 @csrf_exempt
 def get_message(request):
     if request.method == 'POST':
+        
         #get json data
         data = json.loads(request.body)
         #get message

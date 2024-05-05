@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="chat-box"></div>
+    <textarea id="message-input" placeholder="Type your message here..."></textarea>
+    <button id="send-button">Send</button>
+
+    <script>
+        $(document).ready(function(){
+            // Function to send message to backend API
+            function sendMessage(message) {
+                $('#chat-box').append('<p><strong>You:</strong> ' + message + '</p>');
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/chat/send_message/",
+                    contentType: "application/json",
+                    data: JSON.stringify({ input: message }),
+                    success: function(response) {
+                        // Display response from the language model
+                        $('#chat-box').append('<p><strong>Panda:</strong> ' + response.response + '</p>'); // Access 'response' property
+                        // Scroll to bottom of chat box
+                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            }
+
+            // Event listener for send button
+            $('#send-button').click(function() {
+                var message = $('#message-input').val().trim();
+                if (message !== '') {
+                    sendMessage(message);
+                    $('#message-input').val('');
+                }
+            });
+
+            // Pressing enter in input also sends message
+            $('#message-input').keypress(function(event){
+                if (event.which == 13) {
+                    event.preventDefault();
+                    $('#send-button').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

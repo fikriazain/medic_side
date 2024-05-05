@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Make user profile in Django -->
+    <h1>Profile</h1>
+    <span>Username: </span><span>{{ user.username }}</span><br>
+    <span>Name: </span><span>{{ user.name }}</span><br>
+    <span>Date of Birth: </span><span>{{ user.TTL }}</span><br>
+    <h3> Please edit your profile to fill this data everyday</h3>
+    <a href="/edit-profile/" class="btn"><button>Edit Profile</button></a><br>
+    <span>Blood pressure: </span><span>{{ user.blood_pressure }}</span><br>
+    <span>Weight: </span><span>{{user.weight}}</span><br>
+    <span>Vein: </span><span>{{ user.vein }}</span><br>
+    <span>Temperature: </span><span>{{ user.temp }}</span><br>
+    <span>Drink per-Day: </span><span>{{user.drink_perday}}</span><br>
+    <span>Food: </span><span>{{user.food}}</span><br>
+
+</body>
+</html>
