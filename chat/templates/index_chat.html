@@ -6,12 +6,27 @@
     <title>Chat Page</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body onload="firstMessage()">
     <div id="chat-box"></div>
     <textarea id="message-input" placeholder="Type your message here..."></textarea>
     <button id="send-button">Send</button>
 
     <script>
+        function firstMessage() {
+                console.log("First message");
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/chat/first_message/",
+                    contentType: "application/json",
+                    success: function(response) {
+                        // Display response from the language model
+                        $('#chat-box').append('<p><strong>Panda:</strong> ' + response.response + '</p>'); // Access 'response' property
+                        // Scroll to bottom of chat box
+                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                    },
+                });
+            }
+            
         $(document).ready(function(){
             // Function to send message to backend API
             function sendMessage(message) {
