@@ -1,70 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Page</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body onload="firstMessage()">
-    <div id="chat-box"></div>
-    <textarea id="message-input" placeholder="Type your message here..."></textarea>
-    <button id="send-button">Send</button>
+<!DOCTYPE html> 
+{% load static %} 
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
+    <title> PanDa </title>
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    <style>
+        .chat-container {
+          max-width: 600px;
+          margin: 0 auto;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px;
+          height: 400px;
+          overflow-y: scroll;
+          background-color: #f9f9f9;
+        }
+        .chat-box {
+          display: flex;
+          flex-direction: column;
+        }
+        .message {
+          margin: 5px 0;
+          padding: 10px;
+          border-radius: 15px;
+          max-width: 75%;
+          word-wrap: break-word;
+        }
+        .message.user {
+          background-color: #d1e7dd;
+          align-self: flex-end;
+        }
+        .message.bot {
+          background-color: #f8d7da;
+          align-self: flex-start;
+        }
+        .input-group-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+        }
+        .input-group {
+          display: flex;
+          max-width: 600px;
+          width: 100%;
+          margin-top: 10px;
+        }
+        #message-input {
+          flex: 1;
+          margin-right: 10px;
+        }
+        #send-button {
+          text-align: center;
+          height: 40px;
+          width: 80px;
+        }
+      </style>
+  </head>
 
-    <script>
-        function firstMessage() {
-                console.log("First message");
-                $.ajax({
-                    type: "POST",
-                    url: "http://127.0.0.1:8000/chat/first_message/",
-                    contentType: "application/json",
-                    success: function(response) {
-                        // Display response from the language model
-                        $('#chat-box').append('<p><strong>Panda:</strong> ' + response.response + '</p>'); // Access 'response' property
-                        // Scroll to bottom of chat box
-                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                    },
-                });
-            }
-            
-        $(document).ready(function(){
-            // Function to send message to backend API
-            function sendMessage(message) {
-                $('#chat-box').append('<p><strong>You:</strong> ' + message + '</p>');
-                $.ajax({
-                    type: "POST",
-                    url: "http://127.0.0.1:8000/chat/send_message/",
-                    contentType: "application/json",
-                    data: JSON.stringify({ input: message }),
-                    success: function(response) {
-                        // Display response from the language model
-                        $('#chat-box').append('<p><strong>Panda:</strong> ' + response.response + '</p>'); // Access 'response' property
-                        // Scroll to bottom of chat box
-                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error:", error);
-                    }
-                });
-            }
+  <body class="sub_page">
+    <div class="hero_area">
+      <div class="hero_bg_box">
+        <img src="{% static 'images/hero-bg.png' %}" alt="">
+      </div>
+      <!-- header section strats --> 
+       {% include 'navbar.html' %}
+      <!-- end header section -->
+    </div>
+    <!-- body section -->
 
-            // Event listener for send button
-            $('#send-button').click(function() {
-                var message = $('#message-input').val().trim();
-                if (message !== '') {
-                    sendMessage(message);
-                    $('#message-input').val('');
-                }
-            });
+    <!-- body section -->
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+    </div>
+    <div class="input-group-container">
+        <div class="input-group mt-3 mb-3">
+            <textarea id="message-input" class="form-control" placeholder="Type your message here..."></textarea>
+        <button id="send-button" class="btn" style="background-color: #62d2a2; color: white;">Send</button>
+        </div>
+    </div>
+    <!-- footer section --> 
+    {% include 'footer.html' %}
+    <!-- footer section -->
 
-            // Pressing enter in input also sends message
-            $('#message-input').keypress(function(event){
-                if (event.which == 13) {
-                    event.preventDefault();
-                    $('#send-button').click();
-                }
-            });
-        });
-    </script>
-</body>
+    <!-- jQery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- owl carousel js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+    <!-- End Google Map -->
+  </body>
 </html>
