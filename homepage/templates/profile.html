@@ -37,20 +37,33 @@
       <!-- end header section -->
     </div>
     <!-- body section -->
-    <div class="container mt-5">
-        <h1>Profile</h1>
-        <div class="profile-info">
-          <p><strong>Username:</strong> {{ user.username }}</p>
-          <p><strong>Name:</strong> {{ user.name }}</p>
-          <p><strong>Date of Birth:</strong> {{ user.TTL }}</p>
-          <h3>Please edit your profile to fill this data everyday</h3>
-          <a href="{% url 'edit_profile' %}" class="btn mb-3" style="background-color: #62d2a2; color: white;">Edit Profile</a>
-          <p><strong>Blood pressure:</strong> {{ user.blood_pressure }}</p>
-          <p><strong>Weight:</strong> {{ user.weight }}</p>
-          <p><strong>Vein:</strong> {{ user.vein }}</p>
-          <p><strong>Temperature:</strong> {{ user.temp }}</p>
-          <p><strong>Drink per-Day:</strong> {{ user.drink_perday }}</p>
-          <p><strong>Food:</strong> {{ user.food }}</p>
+    <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header border-0">
+              <h3 class="card-title">Daftar Pesan</h3>
+            </div>
+            <div class="card-body table-responsive p-1 ">
+              <table id="datatable" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>ID User</th>
+                    <th>Pesan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for message in messages %}
+                  <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td>{{ message.user_id }}</td>
+                    <td>{{ message.message }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
