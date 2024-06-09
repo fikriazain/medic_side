@@ -1,20 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
+
+  <title> PanDa </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
 </head>
+
 <body>
-    <!-- Check if user is not None -->
-    {% if user %}
-        <a href="/logout/" class="btn"><button>Logout</button></a>
-        <a href="/profile/" class="btn"><button>Profile</button></a><br>
-        <span><h1>Welcome {{user.username}}</h1></span>
-    {% else %}
-        <a href="/login/" class="btn"><button>Login</button></a>
-        <a href="/register/" class="btn"><button>Register</button></a><br>
-        <span><h1>Welcome Guest</h1></span>
-    {% endif %}
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <img src="{% static 'images/hero-bg.png' %}" alt="">
+    </div>
+
+    {% include 'navbar.html' %}
+
+    <!-- slider section -->
+    <section class="slider_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="detail-box">
+              <h1>
+                Pemantauan pasien hemodialisis
+              </h1>
+              <p>
+                Salah satu kebutuhan pasien hemodialisis adalah pemantauan kondisinya. dengan PANDA, Pasien dapat berkonsultasi kapan pun dan di mana pun.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+  <!-- department section -->
+
+  <section class="department_section layout_padding">
+    <div class="department_container">
+      <div class="container ">
+        <div class="heading_container heading_center">
+          <h2>
+            Fitur
+          </h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-3">
+            <div class="box ">
+              <div class="img-box">
+                <img src="{% static 'images/s1.png' %}" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Pemantauan
+                </h5>
+                <p>
+                  Gejala yang dilaporkan pasien akan dicatat dan bisa dilihat oleh tenaga medis.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="box ">
+              <div class="img-box">
+                <img src="{% static 'images/s2.png' %}" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  pengingat
+                </h5>
+                <p>
+                  Sistem juga dilengkapi fitur pengingat.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="box ">
+              <div class="img-box">
+                <img src="{% static 'images/s4.png' %}" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Sistem Emergency
+                </h5>
+                <p>
+                  Kondisi yang membutuhkan penanganan langsung oleh tenaga medis akan diberitahukan oleh sistem secara otomatis.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end department section -->
+
+  <!-- doctor section -->
+
+  <section class="doctor_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Developed By
+        </h2>
+        <p class="col-md-10 mx-auto px-0">
+          Incidunt alias dolorem error molestiae dolorum natus sit laborum.
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-lg-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'images/adhin.jpg' %}" alt="" width="503" height="500">
+            </div>
+            <div class="detail-box">
+              <div class="social_box">
+                </a>
+                <a href="https://www.instagram.com/adhin.ab/">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/adhin-abdallah/">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </div>
+              <h5>
+                Adhin
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'images/zain.jpg' %}" alt="" width="503" height="500">
+            </div>
+            <div class="detail-box">
+              <div class="social_box">
+                <a href="https://www.instagram.com/fikriazain/">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/fikri-aufaa-zain-0966611b2/">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </div>
+              <h5>
+                Zain
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end doctor section -->
+
+  {% include 'footer.html' %}
+
+  <!-- jQery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <!-- owl carousel js -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <!-- custom js -->
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
 </body>
+
 </html>

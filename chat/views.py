@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from deep_translator import GoogleTranslator
 import datetime
 import zoneinfo
+from homepage.models import User
 
 
 
@@ -24,7 +25,10 @@ def first_message(request):
 
 @csrf_exempt
 def index(request):
-    return render(request, 'index_chat.html')
+    if request.session.get('user_id') is not None:
+        user = User.objects.get(username=request.session.get('user_id'))
+        return render(request, 'index_chat.html', {'user': user})
+    return render(request, 'index_chat.html', {'user': None})
 
 @csrf_exempt
 def send_message(request):
