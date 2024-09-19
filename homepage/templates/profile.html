@@ -1,78 +1,74 @@
-<!DOCTYPE html> 
-{% load static %} 
+<!DOCTYPE html>
+{% load static %}
 <html>
-  <head>
-    <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
-    <title> PanDa </title>
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <!--owl slider stylesheet -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <!-- font awesome style -->
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
-  </head>
 
-  <body class="sub_page">
-    <div class="hero_area">
-      <div class="hero_bg_box">
-        <img src="{% static 'images/hero-bg.png' %}" alt="">
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
+
+  <title> PanDa </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+    <div class="main-wrapper">
+      <div class="hero_area">
+        <div class="hero_bg_box">
+          <img src="{% static 'images/hero-bg.png' %}" alt="">
+        </div>
+        <!-- header section starts --> 
+        {% include 'navbar.html' %}
+        <!-- end header section -->
       </div>
-      <!-- header section strats --> 
-       {% include 'navbar.html' %}
-      <!-- end header section -->
-    </div>
-    <!-- body section -->
-    <div class="row">
+      <!-- body section -->
+      <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header border-0">
               <h3 class="card-title">Daftar Pesan</h3>
             </div>
-            <div class="card-body table-responsive p-1 ">
-              <table id="datatable" class="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>ID User</th>
-                    <th>Pesan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for message in messages %}
-                  <tr>
-                    <td> {{ forloop.counter }} </td>
-                    <td>{{ message.user_id }}</td>
-                    <td>{{ message.message }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
+            <div class="profile-info" style="margin-left: 20px;">
+              <p><strong>Username:</strong> {{ user.username }}</p>
+              <p><strong>Name:</strong> {{ user.name }}</p>
+              <p><strong>Date of Birth:</strong> {{ user.TTL }}</p>
+              <h3>Please edit your profile to fill this data everyday</h3>
+              <a href="{% url 'edit_profile' %}" class="btn mb-3" style="background-color: #62d2a2; color: white;">Edit Profile</a>
+              <p><strong>Blood pressure:</strong> {{ user.blood_pressure }}</p>
+              <p><strong>Weight:</strong> {{ user.weight }}</p>
+              <p><strong>Vein:</strong> {{ user.vein }}</p>
+              <p><strong>Temperature:</strong> {{ user.temp }}</p>
+              <p><strong>Drink per-Day:</strong> {{ user.drink_perday }}</p>
+              <p><strong>Food:</strong> {{ user.food }}</p>
           </div>
         </div>
       </div>
-
-    <!-- body section -->
-
-    <!-- footer section --> 
+    </div>
     {% include 'footer.html' %}
-    <!-- footer section -->
-
     <!-- jQery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- bootstrap js -->
@@ -87,4 +83,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
     <!-- End Google Map -->
   </body>
+  
 </html>
